@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 export const MyReads = () => {
 	return (
@@ -186,7 +187,9 @@ export const MyReads = () => {
 				</div>
 			</div>
 			<div className="open-search">
-				<button>Add a book</button>
+				<Link
+					to='/search'
+				>Open search</Link>
 			</div>
 		</div>
 	);
