@@ -24,7 +24,6 @@ class BooksApp extends React.Component {
 	 * @param books - the list of books to classify
 	 */
 	classifyBooks = (books) => {
-		console.log('En classify', books);
 		Object.keys(Shelves).forEach(shelf => {
 			// Filter books for the current shelf
 			const filteredBooks = books.filter(book => book.shelf === shelf);
@@ -64,4 +63,4 @@ class BooksApp extends React.Component {
 	}
 }
 
-export default BooksApp
+export default BooksApp;
