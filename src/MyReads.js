@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export const MyReads = () => {
+export const MyReads = ({books}) => {
+	console.log('Books', books);
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -194,3 +196,7 @@ export const MyReads = () => {
 		</div>
 	);
 };
+
+MyReads.propTypes = {
+	books: PropTypes.array.isRequired,
+}
