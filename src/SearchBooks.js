@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+/**
+ * Component that allows the user to search books and add it the his/her reads
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const SearchBooks = () => {
 	return (<div className="search-books">
 		<div className="search-books-bar">

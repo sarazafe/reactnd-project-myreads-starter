@@ -2,6 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+/**
+ * Component that displays all 'my' read books
+ * @param books
+ * @returns {JSX.Element}
+ * @constructor
+ */
 export const MyReads = ({books}) => {
 	console.log('Books', books);
 	return (
