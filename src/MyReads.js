@@ -8,8 +8,8 @@ import PropTypes from 'prop-types';
  * @returns {JSX.Element}
  * @constructor
  */
-export const MyReads = ({books}) => {
-	console.log('Books', books);
+export const MyReads = ({bookShelves}) => {
+	console.log('bookShelves', bookShelves);
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -17,6 +17,8 @@ export const MyReads = ({books}) => {
 			</div>
 			<div className="list-books-content">
 				<div>
+					{
+					}
 					<div className="bookshelf">
 						<h2 className="bookshelf-title">Currently Reading</h2>
 						<div className="bookshelf-books">
@@ -204,5 +206,5 @@ export const MyReads = ({books}) => {
 };
 
 MyReads.propTypes = {
-	books: PropTypes.array.isRequired,
+	bookShelves: PropTypes.array.isRequired,
 }

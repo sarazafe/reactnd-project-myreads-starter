@@ -12,7 +12,7 @@ class BooksApp extends React.Component {
 	 * The state with the books of each shelf
 	 */
 	state = {
-		books: [],
+		bookShelves: [],
 	}
 
 	/**
@@ -26,7 +26,7 @@ class BooksApp extends React.Component {
 
 			// Update the state with the books of the current shelf
 			this.setState((currentState)=>({
-				books: [...currentState.books, {
+				bookShelves: [...currentState.bookShelves, {
 					shelf,
 					books: filteredBooks
 				}],
@@ -50,7 +50,7 @@ class BooksApp extends React.Component {
 			<div className="app">
 				<Route exact path='/' render={() => (
 					<MyReads
-						books={this.state.books}
+						bookShelves={this.state.bookShelves}
 					/>
 				)}/>
 				<Route path='/search' component={SearchBooks}/>
