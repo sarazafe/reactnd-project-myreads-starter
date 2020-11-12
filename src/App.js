@@ -12,11 +12,7 @@ class BooksApp extends React.Component {
 	 * The state with the books of each shelf
 	 */
 	state = {
-		books: {
-			currentlyReading: [],
-			wantToRead: [],
-			read: [],
-		}
+		books: [],
 	}
 
 	/**
@@ -30,10 +26,10 @@ class BooksApp extends React.Component {
 
 			// Update the state with the books of the current shelf
 			this.setState((currentState)=>({
-				books: {
-					...currentState.books,
-					[shelf]: filteredBooks,
-				}
+				books: [...currentState.books, {
+					shelf,
+					books: filteredBooks
+				}],
 			}));
 		});
 	};

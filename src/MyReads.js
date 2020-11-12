@@ -204,5 +204,5 @@ export const MyReads = ({books}) => {
 };
 
 MyReads.propTypes = {
-	books: PropTypes.object.isRequired,
+	books: PropTypes.array.isRequired,
 }
