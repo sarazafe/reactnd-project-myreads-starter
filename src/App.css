@@ -8,6 +8,7 @@ body {
 
 body, .app {
     background: white;
+    color: #3d4a52;
 }
 
 /* main page */
@@ -195,12 +196,14 @@ button:active {
 /* book cover */
 
 .book-cover {
+    width: 128px;
+    height: 193px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    background: #eee;
+    background: #5a819d29;
 }
 
 .book-cover-title {
     padding: 20px 10px 0;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 0.9em;
 }
