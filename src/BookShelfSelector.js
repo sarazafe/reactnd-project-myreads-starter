@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from "prop-types";
-import {Shelves, ShelvesTitle} from "./constants";
+import {Shelves, ShelvesTitle, None} from "./constants";
 
 /**
  * Component that displays the shelves selector
@@ -32,7 +32,7 @@ class BookShelfSelector extends Component {
 							<option key={sf} value={sf}>{ShelvesTitle[sf]}</option>
 						))
 					}
-					<option value="none">None</option>
+					<option value={None}>{None.replace(/^\w/, (c) => c.toUpperCase())}</option>
 				</select>
 			</div>
 		);
