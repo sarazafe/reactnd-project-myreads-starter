@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from "./Book";
@@ -43,7 +43,6 @@ class SearchBooks extends Component {
 				<div className="search-books-input-wrapper">
 					<input
 						type="text"
-						placeholder="Name"
 						name="query"
 						onChange={this.handleChange}
 						placeholder="Search by title or author"/>
