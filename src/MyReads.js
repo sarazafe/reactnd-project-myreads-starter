@@ -9,7 +9,7 @@ import BookShelf from "./BookShelf";
  * @returns {JSX.Element}
  * @constructor
  */
-export const MyReads = ({bookShelves}) => {
+export const MyReads = ({bookShelves, onSelectedShelf}) => {
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -19,7 +19,7 @@ export const MyReads = ({bookShelves}) => {
 				<div>
 					{
 						bookShelves.map(({shelf, books}) => (
-							<BookShelf key={shelf} shelf={shelf} books={books}/>
+							<BookShelf key={shelf} shelf={shelf} books={books} onSelectedShelf={onSelectedShelf}/>
 						))
 					}
 				</div>
@@ -35,4 +35,5 @@ export const MyReads = ({bookShelves}) => {
 
 MyReads.propTypes = {
 	bookShelves: PropTypes.array.isRequired,
+	onSelectedShelf: PropTypes.func.isRequired,
 }

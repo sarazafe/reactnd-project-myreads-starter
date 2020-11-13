@@ -10,10 +10,11 @@ class BookShelf extends Component {
 	static propTypes = {
 		shelf: PropTypes.string.isRequired,
 		books: PropTypes.array.isRequired,
+		onSelectedShelf: PropTypes.func.isRequired,
 	}
 
 	render() {
-		const {shelf, books} = this.props;
+		const {shelf, books, onSelectedShelf} = this.props;
 		return (
 			<div className="bookshelf">
 				<h2 className="bookshelf-title">{ShelvesTitle[shelf]}</h2>
@@ -21,7 +22,7 @@ class BookShelf extends Component {
 					<ol className="books-grid">
 						{
 							books.map(book => (
-								<li key={book.id}><Book book={book} /></li>
+								<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
 							))
 						}
 					</ol>

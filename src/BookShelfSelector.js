@@ -7,19 +7,25 @@ import {Shelves, ShelvesTitle} from "./constants";
  */
 class BookShelfSelector extends Component {
 	static propTypes = {
-		bookShelf: PropTypes.string.isRequired,
+		book: PropTypes.object.isRequired,
+		onSelectedShelf: PropTypes.func.isRequired,
 	}
 
-	constructor(props) {
-		super(props);
-		this.state = {shelf: this.props.bookShelf};
-	}
+	/**
+	 * Handler for on change event on selector. Calls to the function that reclassify the
+	 * book to assign to selected shelf
+	 * @param event - the event
+	 */
+	handleChange = event =>{
+		const {book, onSelectedShelf} = this.props;
+		onSelectedShelf({book, shelf: event.target.value});
+	};
 
 	render() {
-		const {shelf} = this.state;
+		const {shelf} = this.props.book;
 		return (
 			<div className="book-shelf-changer">
-				<select defaultValue={shelf}>
+				<select value={shelf} onChange={this.handleChange}>
 					<option value="move" disabled>Move to...</option>
 					{
 						Object.keys(Shelves).map(sf => (

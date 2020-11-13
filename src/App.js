@@ -16,6 +16,17 @@ class BooksApp extends React.Component {
 	}
 
 	/**
+	 * Retrieves all books whe component did mount
+	 */
+	componentDidMount() {
+		BooksAPI.getAll()
+			.then((books) => {
+				// Classify the books and update the state
+				this.classifyBooks(books);
+			});
+	}
+
+	/**
 	 * Classifies the books to fill the state with this information
 	 * @param books - the list of books to classify
 	 */
@@ -35,14 +46,16 @@ class BooksApp extends React.Component {
 	};
 
 	/**
-	 * Retrieves all books whe component did mount
+	 * Assigns the book to a new shelf. If the value of the shelf is not one of these ones:
+	 * - currentlyReading
+	 * - wantToRead
+	 * - read
+	 * the shelf of the book will be assigned to an empty string
+	 * @param book - the book to be updated
+	 * @param shelf - the shelf to be assigned to the book
 	 */
-	componentDidMount() {
-		BooksAPI.getAll()
-			.then((books) => {
-				// Classify the books and update the state
-				this.classifyBooks(books);
-			});
+	reclassifyBook = ({book, shelf}) => {
+		console.log(`${book.title} to ${shelf}`);
 	}
 
 	render() {
@@ -51,6 +64,7 @@ class BooksApp extends React.Component {
 				<Route exact path='/' render={() => (
 					<MyReads
 						bookShelves={this.state.bookShelves}
+						onSelectedShelf={this.reclassifyBook}
 					/>
 				)}/>
 				<Route path='/search' component={SearchBooks}/>
