@@ -1,13 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-import BookShelf from "./BookShelf";
+import {BookShelf} from "./BookShelf";
 
 /**
  * Component that displays all 'my' read books
- * @param books
- * @returns {JSX.Element}
- * @constructor
  */
 export const MyReads = ({bookShelves, onSelectedShelf}) => {
 	return (
@@ -36,4 +33,4 @@ export const MyReads = ({bookShelves, onSelectedShelf}) => {
 MyReads.propTypes = {
 	bookShelves: PropTypes.array.isRequired,
 	onSelectedShelf: PropTypes.func.isRequired,
-}
+};

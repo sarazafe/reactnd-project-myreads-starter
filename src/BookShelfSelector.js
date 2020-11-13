@@ -9,7 +9,7 @@ class BookShelfSelector extends Component {
 	static propTypes = {
 		book: PropTypes.object.isRequired,
 		onSelectedShelf: PropTypes.func.isRequired,
-	}
+	};
 
 	/**
 	 * Handler for on change event on selector. Calls to the function that reclassify the

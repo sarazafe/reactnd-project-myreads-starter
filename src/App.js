@@ -13,7 +13,7 @@ class BooksApp extends React.Component {
 	 */
 	state = {
 		bookShelves: [],
-	}
+	};
 
 	/**
 	 * Retrieves all books whe component did mount
@@ -65,7 +65,7 @@ class BooksApp extends React.Component {
 
 						// Remove book to its original shelf if it was in a shelf
 						if(book.shelf) {
-							const originalShelfIndex = bookShelves.findIndex(element => element.shelf === book.shelf)
+							const originalShelfIndex = bookShelves.findIndex(element => element.shelf === book.shelf);
 							newBookShelves[originalShelfIndex] = {
 								...newBookShelves[originalShelfIndex],
 								books: bookShelves.filter(bS => (bS.shelf === book.shelf))
@@ -76,7 +76,7 @@ class BooksApp extends React.Component {
 
 						// Add the book to the new shelf if this new shelf is not 'none'
 						if (None !== shelf) {
-							const newShelfIndex = bookShelves.findIndex(element => element.shelf === shelf)
+							const newShelfIndex = bookShelves.findIndex(element => element.shelf === shelf);
 							newBookShelves[newShelfIndex] = {
 								...newBookShelves[newShelfIndex],
 								books: bookShelves.filter(bS => (bS.shelf === shelf))

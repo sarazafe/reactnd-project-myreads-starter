@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
-import Book from "./Book";
+import {Book} from "./Book";
 import PropTypes from "prop-types";
 
 /**
