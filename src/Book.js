@@ -9,7 +9,7 @@ class Book extends Component {
 	static propTypes = {
 		book: PropTypes.object.isRequired,
 		onSelectedShelf: PropTypes.func.isRequired,
-	}
+	};
 
 	render() {
 		const {book, onSelectedShelf} = this.props;

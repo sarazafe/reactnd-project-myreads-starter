@@ -64,17 +64,19 @@ class BooksApp extends React.Component {
 
 						let newBookShelves = [...bookShelves];
 
-						// Remove book to its original shelf
-						const originalShelfIndex = bookShelves.findIndex(element => element.shelf === book.shelf)
-						newBookShelves[originalShelfIndex] = {
-							...newBookShelves[originalShelfIndex],
-							books: bookShelves.filter(bS => (bS.shelf === book.shelf))
-								.map(bS => (bS.books))[0]
-								.filter(b => (b.id !== updatedBook.id))
-						};
+						// Remove book to its original shelf if it was in a shelf
+						if(book.shelf) {
+							const originalShelfIndex = bookShelves.findIndex(element => element.shelf === book.shelf)
+							newBookShelves[originalShelfIndex] = {
+								...newBookShelves[originalShelfIndex],
+								books: bookShelves.filter(bS => (bS.shelf === book.shelf))
+									.map(bS => (bS.books))[0]
+									.filter(b => (b.id !== updatedBook.id))
+							};
+						}
 
 						// Add the book to the new shelf if this new shelf is not 'none'
-						if(None !== shelf){
+						if (None !== shelf) {
 							const newShelfIndex = bookShelves.findIndex(element => element.shelf === shelf)
 							newBookShelves[newShelfIndex] = {
 								...newBookShelves[newShelfIndex],
@@ -101,7 +103,9 @@ class BooksApp extends React.Component {
 						onSelectedShelf={this.reclassifyBook}
 					/>
 				)}/>
-				<Route path='/search' component={SearchBooks}/>
+				<Route path='/search' render={() => (
+					<SearchBooks onSelectedShelf={this.reclassifyBook}/>
+				)}/>
 			</div>
 		)
 	}

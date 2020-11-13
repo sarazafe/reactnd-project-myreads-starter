@@ -2,11 +2,16 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import Book from "./Book";
+import PropTypes from "prop-types";
 
 /**
  * Component that allows the user to search books and add it the his/her reads
  */
 class SearchBooks extends Component {
+	static propTypes = {
+		onSelectedShelf: PropTypes.func.isRequired,
+	};
+
 	state = {
 		books: [],
 	};
@@ -25,6 +30,7 @@ class SearchBooks extends Component {
 	};
 
 	render() {
+		const {onSelectedShelf} = this.props;
 		const {books} = this.state;
 		console.log(books.length);
 		console.log(books);
@@ -48,8 +54,7 @@ class SearchBooks extends Component {
 					(books && books.length > 0) && (
 						<ol className="books-grid">
 							{books.map(book => (
-								<li key={book.id}><Book book={book} onSelectedShelf={() => {
-								}}/></li>
+								<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
 							))}
 						</ol>
 					)
