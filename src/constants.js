@@ -16,4 +16,10 @@ export const ShelvesTitle = {
 	currentlyReading: 'Currently Reading',
 	wantToRead: 'Want to Read',
 	read: 'Read',
-}
+};
+
+/**
+ * Constant to specify that a book is not in any shelf
+ * @type {string}
+ */
+export const None = 'none';

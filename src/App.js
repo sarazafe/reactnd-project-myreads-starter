@@ -4,7 +4,7 @@ import './App.css'
 import {MyReads} from "./MyReads";
 import {SearchBooks} from "./SearchBooks";
 import {Route} from 'react-router-dom';
-import {Shelves} from "./constants";
+import {Shelves, None} from "./constants";
 
 class BooksApp extends React.Component {
 
@@ -36,10 +36,10 @@ class BooksApp extends React.Component {
 			const filteredBooks = books.filter(book => book.shelf === shelf);
 
 			// Update the state with the books of the current shelf
-			this.setState((currentState)=>({
+			this.setState((currentState) => ({
 				bookShelves: [...currentState.bookShelves, {
 					shelf,
-					books: filteredBooks
+					books: filteredBooks,
 				}],
 			}));
 		});
@@ -55,7 +55,41 @@ class BooksApp extends React.Component {
 	 * @param shelf - the shelf to be assigned to the book
 	 */
 	reclassifyBook = ({book, shelf}) => {
-		console.log(`${book.title} to ${shelf}`);
+		BooksAPI.update(book, shelf)
+			.then(() => {
+				// Get updated book info
+				BooksAPI.get(book.id)
+					.then((updatedBook) => {
+						const {bookShelves} = this.state;
+
+						let newBookShelves = [...bookShelves];
+
+						// Remove book to its original shelf
+						const originalShelfIndex = bookShelves.findIndex(element => element.shelf === book.shelf)
+						newBookShelves[originalShelfIndex] = {
+							...newBookShelves[originalShelfIndex],
+							books: bookShelves.filter(bS => (bS.shelf === book.shelf))
+								.map(bS => (bS.books))[0]
+								.filter(b => (b.id !== updatedBook.id))
+						};
+
+						// Add the book to the new shelf if this new shelf is not 'none'
+						if(None !== shelf){
+							const newShelfIndex = bookShelves.findIndex(element => element.shelf === shelf)
+							newBookShelves[newShelfIndex] = {
+								...newBookShelves[newShelfIndex],
+								books: bookShelves.filter(bS => (bS.shelf === shelf))
+									.map(bS => (bS.books))[0]
+									.concat([updatedBook])
+							};
+						}
+
+						// Update state with new data
+						this.setState(() => ({
+							bookShelves: newBookShelves,
+						}));
+					});
+			});
 	}
 
 	render() {
