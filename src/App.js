@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import {MyReads} from "./MyReads";
-import {SearchBooks} from "./SearchBooks";
+import SearchBooks from "./SearchBooks";
 import {Route} from 'react-router-dom';
 import {Shelves, None} from "./constants";
 
