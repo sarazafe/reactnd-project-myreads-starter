@@ -140,6 +140,10 @@ button:active {
     text-align: left;
 }
 
+.noBooks-container {
+    text-align: left;
+}
+
 .book {
     width: 140px;
 }
@@ -206,4 +210,9 @@ button:active {
     padding: 20px 10px 0;
     text-align: center;
     font-size: 0.9em;
+}
+
+/* common styles */
+.important {
+    font-weight: 600;
 }

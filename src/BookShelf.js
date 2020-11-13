@@ -19,13 +19,18 @@ class BookShelf extends Component {
 			<div className="bookshelf">
 				<h2 className="bookshelf-title">{ShelvesTitle[shelf]}</h2>
 				<div className="bookshelf-books">
-					<ol className="books-grid">
-						{
-							books.map(book => (
-								<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
-							))
-						}
-					</ol>
+					{
+						books.length > 0 ? (
+								<ol className="books-grid">
+									{
+										books.map(book => (
+											<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
+										))
+									}
+								</ol>
+							) :
+							<div className="noBooks-container">There is not any book on <span className="important">{ShelvesTitle[shelf]}</span> shelf</div>
+					}
 				</div>
 			</div>
 		);
