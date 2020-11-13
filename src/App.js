@@ -21,7 +21,6 @@ class BooksApp extends React.Component {
 	componentDidMount() {
 		BooksAPI.getAll()
 			.then((books) => {
-				// Classify the books and update the state
 				this.classifyBooks(books);
 			});
 	}
@@ -95,16 +94,17 @@ class BooksApp extends React.Component {
 	}
 
 	render() {
+		const {bookShelves} = this.state;
 		return (
 			<div className="app">
 				<Route exact path='/' render={() => (
 					<MyReads
-						bookShelves={this.state.bookShelves}
+						bookShelves={bookShelves}
 						onSelectedShelf={this.reclassifyBook}
 					/>
 				)}/>
 				<Route path='/search' render={() => (
-					<SearchBooks onSelectedShelf={this.reclassifyBook}/>
+					<SearchBooks bookShelves={bookShelves} onSelectedShelf={this.reclassifyBook}/>
 				)}/>
 			</div>
 		)

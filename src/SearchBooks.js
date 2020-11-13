@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
  */
 class SearchBooks extends Component {
 	static propTypes = {
+		bookShelves: PropTypes.array.isRequired,
 		onSelectedShelf: PropTypes.func.isRequired,
 	};
 
@@ -22,7 +23,20 @@ class SearchBooks extends Component {
 	 */
 	handleChange = event => {
 		BooksAPI.search(event.target.value)
-			.then(books => {
+			.then(res => {
+				// Extract books on shelves into an array
+				const booksOnShelves = this.props.bookShelves.map(bS => (bS.books))
+					.reduce((acc, val) => acc.concat(val), []);
+
+				// Process the books of the search to set shelf property in case that the book is on a shelf
+				const books = [...res];
+				books.forEach(book => {
+					const bookOnShelf = booksOnShelves.find(b => (b.id === book.id));
+					if(bookOnShelf){
+						book.shelf = bookOnShelf.shelf;
+					}
+				});
+
 				this.setState(() => ({
 					books,
 				}));
@@ -32,8 +46,6 @@ class SearchBooks extends Component {
 	render() {
 		const {onSelectedShelf} = this.props;
 		const {books} = this.state;
-		console.log(books.length);
-		console.log(books);
 		return (<div className="search-books">
 			<div className="search-books-bar">
 				<Link
