@@ -1,8 +1,9 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import {Book} from "./Book";
 import PropTypes from "prop-types";
+import {DebounceInput} from 'react-debounce-input';
 
 /**
  * Component that allows the user to search books and add it the his/her reads
@@ -54,7 +55,7 @@ class SearchBooks extends Component {
 	/**
 	 * When there is an error, the list of books will be empty
 	 */
-	handleError = ()=>{
+	handleError = () => {
 		this.setState(() => ({
 			books: [],
 		}));
@@ -63,32 +64,34 @@ class SearchBooks extends Component {
 	render() {
 		const {onSelectedShelf} = this.props;
 		const {books} = this.state;
-		return (<div className="search-books">
-			<div className="search-books-bar">
-				<Link
-					to='/'
-					className='close-search'
-				>Close</Link>
-				<div className="search-books-input-wrapper">
-					<input
-						type="text"
-						name="query"
-						onChange={this.handleChange}
-						placeholder="Search by title or author"/>
+		return (
+			<div className="search-books">
+				<div className="search-books-bar">
+					<Link
+						to='/'
+						className='close-search'
+					>Close</Link>
+					<div className="search-books-input-wrapper">
+						<DebounceInput
+							debounceTimeout={200}
+							type="text"
+							name="query"
+							onChange={this.handleChange}
+							placeholder="Search by title or author"/>
+					</div>
 				</div>
-			</div>
-			<div className="search-books-results">
-				{
-					(books && books.length > 0) && (
-						<ol className="books-grid">
-							{books.map(book => (
-								<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
-							))}
-						</ol>
-					)
-				}
-			</div>
-		</div>);
+				<div className="search-books-results">
+					{
+						(books && books.length > 0) && (
+							<ol className="books-grid">
+								{books.map(book => (
+									<li key={book.id}><Book book={book} onSelectedShelf={onSelectedShelf}/></li>
+								))}
+							</ol>
+						)
+					}
+				</div>
+			</div>);
 	}
 }
 
