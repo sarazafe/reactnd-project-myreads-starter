@@ -22,10 +22,10 @@ class BookShelfSelector extends Component {
 	};
 
 	render() {
-		const {shelf} = this.props.book;
+		const shelf = this.props.book.shelf || None;
 		return (
 			<div className="book-shelf-changer">
-				<select value={shelf} defaultValue={None} onChange={this.handleChange}>
+				<select value={shelf} onChange={this.handleChange}>
 					<option value="move" disabled>Move to...</option>
 					{
 						Object.keys(Shelves).map(sf => (
